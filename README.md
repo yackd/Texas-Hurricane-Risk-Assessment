@@ -114,5 +114,5 @@ This project's code is licensed under the MIT License — see [`LICENSE`](./LICE
 
 ## Author
 
-Sawayne Y.
+Sawayne Y
 Built as an independent passion project exploring the intersection of software engineering and actuarial science.
