@@ -1,0 +1,80 @@
+TEXAS HURRICANE ACTUARIAL RISK ASSESSMENT PROJECT
+Works Cited :
+
+PRIMARY DATA SOURCES ;
+
+National Hurricane Center, National Oceanic and Atmospheric
+Administration (NOAA). "Atlantic Hurricane Database (HURDAT2),
+1851-2025." NOAA/National Weather Service, updated Feb. 27, 2026.
+https://www.nhc.noaa.gov/data/hurdat/hurdat2-1851-2025-02272026.txt
+    Used in: Phase 1 and Phase 2. 
+    Source of every historical storm track, wind speed,
+    and pressure reading used in this project.
+
+Federal Emergency Management Agency (FEMA). "National Shelter
+System - Open Shelters." FEMA GIS Open Data, synced from the
+American Red Cross National Shelter System database.
+https://gis.fema.gov/arcgis/rest/services/NSS/OpenShelters/FeatureServer/0
+    Used in: Phase 3. 
+    Source of all currently-activated emergency shelter 
+    locations and capacities.
+
+United States Census Bureau. "2025 Gazetteer Files - ZIP Code
+Tabulation Areas (ZCTA), National File." U.S. Department of
+Commerce, 2025.
+https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2025_Gazetteer/2025_Gaz_zcta_national.zip
+    Used in: Phase 4. 
+    Source of the latitude/longitude centroid 
+    for every Texas zip code.
+
+
+MATHEMATICAL FORMULA CITATION ;
+
+Sinnott, Roger W. "Virtues of the Haversine." Sky & Telescope,
+vol. 68, no. 2, 1984, p. 159.
+    The original published source of the haversine great-circle
+    distance formula. 
+    Used in: Phases 2, 4, and 5.
+    To measure the surface distance between storms, 
+    shelters, and zip code zones surrounding Texas.
+
+Veness, Chris. "Calculate Distance, Bearing and More Between
+Latitude/Longitude Points." Movable Type Scripts.
+https://www.movable-type.co.uk/scripts/latlong.html
+    Modern reference used to empower the haversine
+    implementation used in this project.
+
+
+SOFTWARE, AND TECHNICAL CITATIONS ;
+
+Python Software Foundation. "The Python Standard Library."
+Python 3 Documentation. https://docs.python.org/3/library/
+    Reference for every module used across
+    all five phases: sqlite3, urllib.request, urllib.parse,
+    zipfile, json, time, math, and os.
+
+SQLite. "SQLite Documentation."
+https://www.sqlite.org/docs.html
+    Reference for the SQL syntax and database used to manipulate
+    all storm, shelter, and zip code data (Phases 2-5).
+
+Esri. "ArcGIS REST API - Query (Feature Service/Layer)."
+ArcGIS Developers. https://developers.arcgis.com/rest/services-reference/
+    Reference for the query parameters (where, outFields,
+    f=json) used to request filtered data from FEMA's
+    ArcGIS-hosted shelter feed (Phase 3).
+
+
+EDUCATIONAL CITATIONS ;
+
+Severance, Charles. "Python for Everybody" (PY4E).
+https://www.py4e.com
+    Source of the original Search Engine Spider project
+    (spider.py, spdump.py, sprank.py, spreset.py, spjson.py) which
+    served as the architectural foundation of this project.
+
+
+Compiled for the Texas Hurricane Actuarial Risk Assessment
+Project (Phases 1-5). All data sources listed above are public
+government or open-access records, current as of project
+completion.

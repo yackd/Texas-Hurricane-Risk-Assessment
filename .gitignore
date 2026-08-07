@@ -1,0 +1,18 @@
+# Downloaded source data (large, and re-downloaded automatically by
+# hurricanes.py and zip_codes.py if missing -- no need to store in git)
+atlantic_hurricane_data-(raw).txt
+2025_Gaz_zcta_national.zip
+
+# Generated database and reports (rebuilt automatically by running
+# database.py, shelters.py, zip_codes.py, and risk.py)
+texas_hurricanes.sqlite
+hurricane_report.txt
+texas_statewide_risk_report.csv
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Editor / OS files
+.vscode/
+.DS_Store
