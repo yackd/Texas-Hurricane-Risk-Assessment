@@ -1,8 +1,8 @@
-# Texas Hurricane Actuarial Risk Assessment Suite
+# Texas Hurricane Risk Assessment Project
 
 ## Overview 
 
-A five-phase Python pipeline that ingests, cleans, and synthesizes three independent U.S. government data sources — NOAA's complete Atlantic hurricane history, FEMA's live emergency shelter registry, and the U.S. Census Bureau's zip code reference data — into a single actuarial-style hurricane risk score for any zip code in Texas. Built as an independent passion project exploring the intersection of software engineering and actuarial science, the suite combines real historical storm data, geospatial distance matching (the Haversine formula), and a weighted composite scoring model to answer a simple question with real data: how exposed is this Texas community to hurricanes, historically speaking, and how well-positioned is it to respond? The project can evaluate a single zip code interactively or generate a full, ranked risk report across every zip code in the state.
+A five-phase Python pipeline that ingests, cleans, and synthesizes three independent U.S. government data sources — NOAA's complete Atlantic hurricane history, FEMA's live emergency shelter registry, and the U.S. Census Bureau's zip code reference data — into a single actuarial-inspired hurricane risk score for any zip code in Texas. Built as an independent passion project exploring the intersection of software engineering and actuarial science, the suite combines real historical storm data, geospatial distance matching (the Haversine formula), and a weighted composite scoring model to answer a simple question with real data: how exposed is this Texas community to hurricanes, historically speaking, and how well-positioned is it to respond? The project can evaluate a single zip code interactively or generate a full, ranked risk report across every zip code in the state.
 
 ## Features 
 
@@ -51,24 +51,21 @@ Phases 3 and 4 don't depend on each other or on Phases 1/2, and can be run in an
 
 **Single zip code lookup:**
 ```
-=========================================================
-           TEXAS HURRICANE RISK ASSESSMENT PLATFORM
-=========================================================
+TEXAS HURRICANE RISK ASSESSMENT
 Enter a Texas zip code, or type ALL, for a statewide risk report : 77550
 
-PERSONAL ACTUARIAL STATEMENT
-Target Postal Zone: 77550
-Assessed Risk Level: 91/100 (CRITICAL / HIGH RISK ZONE)
----------------------------------------------------------
-Regional Historical Data Summary (within 75 miles):
- - Documented Nearby Landfalls: 47 storms
- - Peak Historic Wind Velocity: 145 knots
- - Minimum Core Atmospheric Pressure: 908 mb
----------------------------------------------------------
-EMERGENCY PREPAREDNESS ROUTING PROFILE:
- STATUS: No active Federal emergency shelters are currently open.
- ACTION: Monitor local NOAA and Red Cross alerts for shelter activations.
-=========================================================
+PERSONAL ACTUARIAL ASSESSMENT (TEXAS)
+Estimated Postal Zone: 77550
+Risk Level: 87/100 (CRITICAL RISK ZONE)
+
+Regional Data Summary (within 75 miles):
+Documented Nearby Landfalls : 54 storms
+Peak Historic Wind Velocity : 130 knots
+Minimum Core Atmospheric Pressure : 935 mb
+
+EMERGENCY SHELTER INFORMATION:
+No active Federal emergency shelters are currently open. 
+Monitor local NOAA and Red Cross alerts for shelter activations.
 ```
 *(Illustrative example — actual scores depend on the live data pulled at runtime.)*
 
@@ -104,7 +101,6 @@ Full citations, including the Haversine formula's original published source, are
 
 - Replace the zip-code filter with an exact Texas state-boundary match
 - Incorporate a broader, FEMA facility inventory alongside the live "currently open" shelter feed, for a year-round resilience metric
-- Explore a PageRank-style risk model across a storm/zip-code exposure graph, rather than a single static formula
 - Add a D3.js force-directed visualization of the storm/zip code/shelter network
 - Build a simple web or GUI front end in place of the console interface
 
@@ -114,5 +110,5 @@ This project's code is licensed under the MIT License — see [`LICENSE`](./LICE
 
 ## Author
 
-Sawayne Y
+Sawayne Y.
 Built as an independent passion project exploring the intersection of software engineering and actuarial science.
