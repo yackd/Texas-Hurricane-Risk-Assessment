@@ -6,7 +6,7 @@
 import sqlite3
 
 # Setting up file names for the data and sql database
-raw = "atlantic_hurricane_data-(raw).txt"
+raw = "data/atlantic_hurricane_data-(raw).txt"
 sql = "texas_hurricanes.sqlite"
 
 print("Starting Phase 2: Building the Actuarial Database...")
