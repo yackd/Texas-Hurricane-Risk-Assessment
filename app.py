@@ -2,6 +2,7 @@ import json
 import math
 import os
 import sqlite3
+import ssl
 import time
 import urllib.parse
 import urllib.request
@@ -27,9 +28,7 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
     "Phase 5: Risk Engine",
 ])
 
-# ----------------------------------------------------
-# TAB 1: Phase 1 Logic
-# ----------------------------------------------------
+# Phase 1: Ingestion Logic
 with tab1:
   st.subheader("Phase 1: Ingestion & Total Storm Count")
   URL = "https://www.nhc.noaa.gov/data/hurdat/hurdat2-1851-2025-02272026.txt"
@@ -39,7 +38,15 @@ with tab1:
     with st.spinner("Downloading and parsing NOAA records..."):
       if not os.path.exists(DATA_FILE):
         try:
-          urllib.request.urlretrieve(URL, DATA_FILE)
+          ssl_context = ssl._create_unverified_context()
+          with urllib.request.urlopen(
+              urllib.request.Request(
+                  URL, headers={"User-Agent": "TexasHurricaneRiskProject/1.0"}
+              ),
+              context=ssl_context,
+          ) as response:
+            with open(DATA_FILE, "wb") as f:
+              f.write(response.read())
         except Exception as e:
           st.error(f"Could not download file: {e}")
           st.stop()
@@ -61,9 +68,7 @@ with tab1:
       col1.metric("Total Rows", f"{line_count:,}")
       col2.metric("Atlantic Storms", f"{storm_count:,}")
 
-# ----------------------------------------------------
-# TAB 2: Phase 2 Logic
-# ----------------------------------------------------
+# Phase 2: Database Logic
 with tab2:
   st.subheader("Phase 2: Texas Landfall Database Builder")
   st.markdown("""
@@ -164,9 +169,7 @@ with tab2:
       st.metric("Total Texas Landfall Records Inserted", land_falls)
       st.info(f"Saved locally to `{sql_path}`")
 
-# ----------------------------------------------------
-# TAB 3: Phase 3 Logic
-# ----------------------------------------------------
+# Phase 3: FEMA Emergency Shelter Integration
 with tab3:
   st.subheader("Phase 3: FEMA Emergency Shelter Integration")
   st.markdown("""
@@ -212,7 +215,8 @@ with tab3:
         request = urllib.request.Request(
             api, headers={"User-Agent": "TexasHurricaneRiskProject/1.0"}
         )
-        with urllib.request.urlopen(request) as response:
+        ssl_context = ssl._create_unverified_context()
+        with urllib.request.urlopen(request, context=ssl_context) as response:
           data = response.read().decode("utf-8")
 
         jdata = json.loads(data)
@@ -258,9 +262,7 @@ with tab3:
       except Exception as error:
         st.error(f"Could not pull the shelter data: {error}")
 
-# ----------------------------------------------------
-# TAB 4: Phase 4 Logic
-# ----------------------------------------------------
+# Phase 4: U.S. Census Bureau ZIP Code Ingestion
 with tab4:
   st.subheader("Phase 4: U.S. Census Bureau ZIP Code Ingestion")
   st.markdown("""
@@ -277,7 +279,16 @@ with tab4:
 
       if not os.path.exists(zip_file_path):
         try:
-          urllib.request.urlretrieve(census_url, zip_file_path)
+          ssl_context = ssl._create_unverified_context()
+          with urllib.request.urlopen(
+              urllib.request.Request(
+                  census_url,
+                  headers={"User-Agent": "TexasHurricaneRiskProject/1.0"},
+              ),
+              context=ssl_context,
+          ) as response:
+            with open(zip_file_path, "wb") as f:
+              f.write(response.read())
         except Exception as error:
           st.error(f"Could not download Census file: {error}")
           st.stop()
@@ -338,9 +349,7 @@ with tab4:
       except Exception as e:
         st.error(f"Error processing ZIP file: {e}")
 
-# ----------------------------------------------------
-# TAB 5: Phase 5 Logic (Actuarial Risk Engine)
-# ----------------------------------------------------
+# Phase 5: Actuarial Risk Engine & Reporting
 with tab5:
   st.subheader("Phase 5: Actuarial Risk Engine & Reporting")
   st.markdown("""
